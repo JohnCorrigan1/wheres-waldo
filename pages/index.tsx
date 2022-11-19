@@ -7,12 +7,16 @@ const Home: NextPage = () => {
 
   const [xCord, setXCord] = useState(0);
   const [yCord, setYCord] = useState(0);
+  const [pageX, setPageX] = useState(0);
+  const [pageY, setPageY] = useState(0);
 
 
   const mouseHandler = (e: any) => {
     console.log(e)
     setXCord(e.clientX);
     setYCord(e.clientY);
+    setPageX(Math.round((e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100));
+    setPageY(Math.round((e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100));
   }
 
   return (
@@ -23,9 +27,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     <div className='flex flex-col gap-5 text-rose-400 text-3xl'>
+     <div className='flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10'>
       <h1>X: {xCord}</h1>
       <h1>Y: {yCord}</h1>
+      <h1>page X: {pageX}</h1>
+      <h1>page Y: {pageY}</h1>
      </div>
     </div>
   )
