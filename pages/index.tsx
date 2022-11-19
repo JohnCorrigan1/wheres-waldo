@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 // import CharacterSelection from '../components/characterSelection';
 
 const Home: NextPage = () => {
@@ -9,17 +9,26 @@ const Home: NextPage = () => {
   const [pageX, setPageX] = useState(0);
   const [pageY, setPageY] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMonkey, setIsMonkey] = useState(false);
+  const [isLink, setIsLink] = useState(false);
+  const [isLuigi, setIsLuigi] = useState(false);
 
   const selectionHandler = (e: any) => {
     setXCord(e.pageX);
     setYCord(e.pageY);
+    if(pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46){
+      setIsMonkey(true);
+    }
+    else if(pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84){
+      setIsLuigi(true);
+    }
+    else if(pageY >= 65 && pageY <= 68 && pageX >= 64 && pageX <= 73){
+      setIsLink(true);
+    }
     setIsOpen(!isOpen);
   };
 
   const mouseHandler = (e: any) => {
-    // console.log(e)
-    // setXCord(e.clientX);
-    // setYCord(e.clientY);
     setPageX(
       Math.round(
         (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
@@ -31,6 +40,28 @@ const Home: NextPage = () => {
       )
     );
   };
+
+  const monkeyHandler = () => {
+    if(isMonkey){
+      alert("you fount it");
+    }
+    else alert("thats not the monkey")
+  }
+
+  const luigiHandler = () => {
+    if(isLuigi){
+      alert("you fount it");
+    }
+    else alert("thats not the luigi")
+  }
+
+  const linkHandler = () => {
+    if(isLink){
+      alert("you fount it");
+    }
+    else alert("thats not the link")
+  }
+
 
   return (
     <div
@@ -44,16 +75,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <style jsx>{`.items-container{
-    top: ${yCord}px;
-    left: ${xCord}px;`}</style>
-    
+    top: ${yCord - 20}px;
+    left: ${xCord + 25}px;`}</style>
+
       {isOpen ? (
         <div
-          className={`rounded-md bg-zinc-100 text-2xl font-semibold h-28 p-3 absolute items-container`}
+          className='rounded-md  bg-zinc-100 text-2xl font-semibold absolute items-container cursor-pointer shadow-md'
         >
-          <h1 className="border-black border-b-2">Mario</h1>
-          <h1 className="border-black border-b-2">Link</h1>
-          <h1>Someone else</h1>
+          <h1 className={"border-black border-b-2 hover:bg-zinc-300 p-2 rounded-t-md"} onClick={luigiHandler}>Luigi</h1>
+          <h1 className="border-black border-b-2 p-2 hover:bg-zinc-300" onClick={linkHandler}>Link</h1>
+          <h1 className="p-2 rounded-b-md hover:bg-zinc-300" onClick={monkeyHandler}>Monkey Ball</h1>
         </div>
       ) : (
         <></>
