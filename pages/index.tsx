@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
+import { toast } from "react-hot-toast";
 import React, { useState } from "react";
-// import CharacterSelection from '../components/characterSelection';
+import GameHeader from "../components/GameHeader";
+import { TEMPORARY_REDIRECT_STATUS } from "next/dist/shared/lib/constants";
+
 
 const Home: NextPage = () => {
   const [xCord, setXCord] = useState(0);
@@ -16,14 +20,14 @@ const Home: NextPage = () => {
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [isLuigiClicked, setIsLuigiClicked] = useState(false);
 
-  const selectionHandler = () => {
-    if(pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46){
+  const selectionHandler = (e: any) => {
+    setXCord(e.pageX);
+    setYCord(e.pageY);
+    if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
       setIsMonkey(true);
-    }
-    else if(pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84){
+    } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
       setIsLuigi(true);
-    }
-    else if(pageY >= 65 && pageY <= 68 && pageX >= 64 && pageX <= 73){
+    } else if (pageY >= 65 && pageY <= 68 && pageX >= 64 && pageX <= 73) {
       setIsLink(true);
     }
     setIsOpen(!isOpen);
@@ -43,46 +47,37 @@ const Home: NextPage = () => {
   };
 
   const monkeyHandler = () => {
-    if(!isMonkeyClicked && isMonkey){
+    if (!isMonkeyClicked && isMonkey) {
       setIsMonkeyClicked(true);
-      alert("you found Monkey");
+      toast.success("You found AiAi!");
+    } else if (!isMonkeyClicked && !isMonkey) {
+      toast.error("That's not AiAi");
+    } else if (isMonkeyClicked) {
+      toast.error("You already found AiAi");
     }
-    else if(!isMonkeyClicked && !isMonkey){
-      alert("thats not Monkey")
-    }
-    else if(isMonkeyClicked){
-      alert("you already found Monkey Ball")
-    }
-  }
+  };
 
   const luigiHandler = () => {
-    if(!isLuigiClicked && isLuigi){
+    if (!isLuigiClicked && isLuigi) {
       setIsLuigiClicked(true);
-      alert("you found    Luigi");
+      toast.success("You found Luigi");
+    } else if (!isLuigiClicked && !isLuigi) {
+      toast.error("That's not Luigi");
+    } else if (isLuigiClicked) {
+      toast.error("You already found Luigi");
     }
-    else if(!isLuigiClicked && !isLuigi){
-      alert("thats not Luigi")
-    }
-    else if(isLuigiClicked){
-      alert("you already found Luigi")
-    }
-
-
-  }
+  };
 
   const linkHandler = () => {
-    if(!isLinkClicked && isLink){
+    if (!isLinkClicked && isLink) {
       setIsLinkClicked(true);
-      alert("you found Link");
+      toast.success("You found Link");
+    } else if (!isLinkClicked && !isLink) {
+      toast.error("That's not Link");
+    } else if (isLinkClicked) {
+      toast.error("You already found Link");
     }
-    else if(!isLinkClicked && !isLink){
-      alert("thats not Link")
-    }
-    else if(isLinkClicked){
-      alert("you already found Link")
-    }
-  }
-
+  };
 
   return (
     <div
@@ -97,15 +92,33 @@ const Home: NextPage = () => {
       </Head>
       <style jsx>{`.items-container{
     top: ${yCord - 20}px;
-    left: ${xCord + 25}px;`}</style>
+    left: ${xCord + 35}px;`}</style>
+
+      <GameHeader />
 
       {isOpen ? (
-        <div
-          className='rounded-md  bg-zinc-100 text-2xl font-semibold absolute items-container cursor-pointer shadow-md'
-        >
-          <h1 className={(isLuigiClicked ? "line-through" : "") + "border-black border-b-2 hover:bg-zinc-300 p-2 rounded-t-md"} onClick={luigiHandler}>Luigi</h1>
-          <h1 className="border-black border-b-2 p-2 hover:bg-zinc-300" onClick={linkHandler}>Link</h1>
-          <h1 className="p-2 rounded-b-md hover:bg-zinc-300" onClick={monkeyHandler}>Monkey Ball</h1>
+        <div className="rounded-md  bg-zinc-100 text-2xl font-semibold absolute items-container cursor-pointer shadow-md">
+          <h1
+            className={
+              (isLuigiClicked ? "line-through" : "") +
+              "border-black border-b-2 hover:bg-zinc-300 p-2 rounded-t-md"
+            }
+            onClick={luigiHandler}
+          >
+            Luigi
+          </h1>
+          <h1
+            className="border-black border-b-2 p-2 hover:bg-zinc-300"
+            onClick={linkHandler}
+          >
+            Link
+          </h1>
+          <h1
+            className="p-2 rounded-b-md hover:bg-zinc-300"
+            onClick={monkeyHandler}
+          >
+            AiAi
+          </h1>
         </div>
       ) : (
         <></>
