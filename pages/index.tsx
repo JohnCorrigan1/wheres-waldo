@@ -4,7 +4,6 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import React, { useState } from "react";
 import GameHeader from "../components/GameHeader";
-import { TEMPORARY_REDIRECT_STATUS } from "next/dist/shared/lib/constants";
 
 
 const Home: NextPage = () => {
@@ -94,31 +93,39 @@ const Home: NextPage = () => {
     top: ${yCord - 20}px;
     left: ${xCord + 35}px;`}</style>
 
-      <GameHeader />
+      <GameHeader 
+      isLuigiClicked={isLuigiClicked}
+      isMonkeyClicked={isMonkeyClicked}
+      isLinkClicked={isLinkClicked}
+      />
+   
 
       {isOpen ? (
-        <div className="rounded-md  bg-zinc-100 text-2xl font-semibold absolute items-container cursor-pointer shadow-md">
-          <h1
+        <div className="rounded-md bg-slate-600 text-2xl font-semibold absolute items-container cursor-pointer shadow-lg bg-opacity-80 text-zinc-200">
+          {!isLuigiClicked && <h1
             className={
               (isLuigiClicked ? "line-through" : "") +
-              "border-black border-b-2 hover:bg-zinc-300 p-2 rounded-t-md"
+              "border-black border-b-2 hover:bg-slate-400 p-2 rounded-t-md flex items-center"
             }
             onClick={luigiHandler}
           >
             Luigi
-          </h1>
-          <h1
-            className="border-black border-b-2 p-2 hover:bg-zinc-300"
+            <Image src="/luigi.png" width={60} height={0} alt="logo"/>
+          </h1> }
+          {!isLinkClicked && <h1
+            className="border-black border-b-2 p-2 hover:bg-slate-400 flex gap-5 items-center"
             onClick={linkHandler}
           >
             Link
-          </h1>
-          <h1
-            className="p-2 rounded-b-md hover:bg-zinc-300"
+            <Image src="/link.webp" width={50} height={0} alt="logo" className="mr-5"/>
+          </h1>}
+          {!isMonkeyClicked && <h1
+            className="p-2 rounded-b-md hover:bg-slate-400 flex gap-4"
             onClick={monkeyHandler}
           >
             AiAi
-          </h1>
+            <Image src="/aiai.webp" width={70} height={50} alt="logo"/>
+          </h1>}
         </div>
       ) : (
         <></>
