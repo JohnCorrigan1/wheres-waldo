@@ -22,6 +22,18 @@ const Home: NextPage = () => {
   const selectionHandler = (e: any) => {
     setXCord(e.pageX);
     setYCord(e.pageY);
+    if(!isOpen){
+    setPageX(
+      Math.round(
+        (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
+      )
+    );
+    setPageY(
+      Math.round(
+        (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+      )
+    );
+      }
     if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
       setIsMonkey(true);
     } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
@@ -97,6 +109,7 @@ const Home: NextPage = () => {
       isLuigiClicked={isLuigiClicked}
       isMonkeyClicked={isMonkeyClicked}
       isLinkClicked={isLinkClicked}
+      isOver={isLuigiClicked && isMonkeyClicked && isLinkClicked}
       />
    
 
@@ -131,12 +144,12 @@ const Home: NextPage = () => {
         <></>
       )}
 
-      {/* <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
+      <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
         <h1>X: {xCord}</h1>
         <h1>Y: {yCord}</h1>
         <h1>page X: {pageX}</h1>
         <h1>page Y: {pageY}</h1>
-      </div> */}
+      </div>
     </div>
   );
 };
