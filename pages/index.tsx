@@ -4,7 +4,7 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import React, { useState } from "react";
 import GameHeader from "../components/GameHeader";
-
+import LeaderBoardModal from "../components/LeaderBoardModal";
 
 const Home: NextPage = () => {
   const [xCord, setXCord] = useState(0);
@@ -22,18 +22,15 @@ const Home: NextPage = () => {
   const selectionHandler = (e: any) => {
     setXCord(e.pageX);
     setYCord(e.pageY);
-    if(!isOpen){
-    setPageX(
-      Math.round(
+    if(!isOpen) {
+      setPageX(Math.round(
         (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
-      )
-    );
-    setPageY(
-      Math.round(
+      ))
+      setPageY(Math.round(
         (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
-      )
-    );
-      }
+      ))
+    }
+    console.log(pageX, pageY);
     if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
       setIsMonkey(true);
     } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
@@ -63,8 +60,14 @@ const Home: NextPage = () => {
       toast.success("You found AiAi!");
     } else if (!isMonkeyClicked && !isMonkey) {
       toast.error("That's not AiAi");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     } else if (isMonkeyClicked) {
       toast.error("You already found AiAi");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     }
   };
 
@@ -74,8 +77,14 @@ const Home: NextPage = () => {
       toast.success("You found Luigi");
     } else if (!isLuigiClicked && !isLuigi) {
       toast.error("That's not Luigi");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     } else if (isLuigiClicked) {
       toast.error("You already found Luigi");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     }
   };
 
@@ -85,8 +94,14 @@ const Home: NextPage = () => {
       toast.success("You found Link");
     } else if (!isLinkClicked && !isLink) {
       toast.error("That's not Link");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     } else if (isLinkClicked) {
       toast.error("You already found Link");
+      setIsMonkey(false);
+      setIsLink(false);
+      setIsLuigi(false);
     }
   };
 
@@ -105,51 +120,59 @@ const Home: NextPage = () => {
     top: ${yCord - 20}px;
     left: ${xCord + 35}px;`}</style>
 
-      <GameHeader 
-      isLuigiClicked={isLuigiClicked}
-      isMonkeyClicked={isMonkeyClicked}
-      isLinkClicked={isLinkClicked}
-      isOver={isLuigiClicked && isMonkeyClicked && isLinkClicked}
+      <GameHeader
+        isLuigiClicked={isLuigiClicked}
+        isMonkeyClicked={isMonkeyClicked}
+        isLinkClicked={isLinkClicked}
+        isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked}
       />
-   
+
+      {isMonkeyClicked && isLinkClicked && isLuigiClicked && (
+        <LeaderBoardModal isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked} />
+      )}
 
       {isOpen ? (
         <div className="rounded-md bg-slate-600 text-2xl font-semibold absolute items-container cursor-pointer shadow-lg bg-opacity-80 text-zinc-200">
-          {!isLuigiClicked && <h1
-            className={
-              (isLuigiClicked ? "line-through" : "") +
-              "border-black border-b-2 hover:bg-slate-400 p-2 rounded-t-md flex items-center"
-            }
-            onClick={luigiHandler}
-          >
-            Luigi
-            <Image src="/luigi.png" width={60} height={0} alt="logo"/>
-          </h1> }
-          {!isLinkClicked && <h1
-            className="border-black border-b-2 p-2 hover:bg-slate-400 flex gap-5 items-center"
-            onClick={linkHandler}
-          >
-            Link
-            <Image src="/link.webp" width={50} height={0} alt="logo" className="mr-5"/>
-          </h1>}
-          {!isMonkeyClicked && <h1
-            className="p-2 rounded-b-md hover:bg-slate-400 flex gap-4"
-            onClick={monkeyHandler}
-          >
-            AiAi
-            <Image src="/aiai.webp" width={70} height={50} alt="logo"/>
-          </h1>}
+          {!isLuigiClicked && (
+            <h1
+              className={
+                (isLuigiClicked ? "line-through" : "") +
+                "border-black border-b-2 hover:bg-slate-400 p-2 rounded-t-md flex items-center"
+              }
+              onClick={luigiHandler}
+            >
+              Luigi
+              <Image src="/luigi.png" width={60} height={0} alt="logo" />
+            </h1>
+          )}
+          {!isLinkClicked && (
+            <h1
+              className="border-black border-b-2 p-2 hover:bg-slate-400 flex gap-5 items-center"
+              onClick={linkHandler}
+            >
+              Link
+              <Image
+                src="/link.webp"
+                width={50}
+                height={0}
+                alt="logo"
+                className="mr-5"
+              />
+            </h1>
+          )}
+          {!isMonkeyClicked && (
+            <h1
+              className="p-2 rounded-b-md hover:bg-slate-400 flex gap-4"
+              onClick={monkeyHandler}
+            >
+              AiAi
+              <Image src="/aiai.webp" width={70} height={50} alt="logo" />
+            </h1>
+          )}
         </div>
       ) : (
         <></>
       )}
-
-      <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
-        <h1>X: {xCord}</h1>
-        <h1>Y: {yCord}</h1>
-        <h1>page X: {pageX}</h1>
-        <h1>page Y: {pageY}</h1>
-      </div>
     </div>
   );
 };

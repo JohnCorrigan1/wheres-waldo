@@ -10,8 +10,6 @@ const Timer: React.FC<{ isOver: boolean }> = (props) => {
                 const timer = () => {
                     setCount(count + 1);
                 }
-    
-                // if you want it to finish at some point
                 if (props.isOver) {
                     return;
                 }
