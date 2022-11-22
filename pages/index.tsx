@@ -22,15 +22,19 @@ const Home: NextPage = () => {
   const selectionHandler = (e: any) => {
     setXCord(e.pageX);
     setYCord(e.pageY);
-    if(!isOpen) {
-      setPageX(Math.round(
-        (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
-      ))
-      setPageY(Math.round(
-        (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
-      ))
+    if (!isOpen) {
+      setPageX(
+        Math.round(
+          (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
+        )
+      );
+      setPageY(
+        Math.round(
+          (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+        )
+      );
+      console.log(pageX, pageY, e);
     }
-    console.log(pageX, pageY);
     if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
       setIsMonkey(true);
     } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
@@ -128,7 +132,9 @@ const Home: NextPage = () => {
       />
 
       {isMonkeyClicked && isLinkClicked && isLuigiClicked && (
-        <LeaderBoardModal isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked} />
+        <LeaderBoardModal
+          isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked}
+        />
       )}
 
       {isOpen ? (
