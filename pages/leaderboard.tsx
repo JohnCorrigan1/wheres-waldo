@@ -1,27 +1,28 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import LeaderboardData from "../models/LeaderboardData.";
+
+
 const Leaderboard: NextPage = () => {
-  //retrieve data from firestore
-  const leaderBoardData: { name: string; time: number }[] = [];
-  const data: { name: string; time: number }[] = [{ name: "test", time: 10 }, { name: "test2", time: 20 }, { name: "test3", time: 30 }];
+
+const [leaderboardData, setLeaderboardData] = useState<LeaderboardData[]>([]);
 
   useEffect(() => {
     const getLeaderboard = async () => {
       const q = query(collection(db, "leaderboard"));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        leaderBoardData.push(doc.data() as { name: string; time: number });
+       setLeaderboardData((prevData) => {
+         return [...prevData, doc.data() as { name: string; time: number }]});
         // console.log(doc.data());
       });
     };
     getLeaderboard();
-    //sort leaderboard data by descending time
-    data.sort((a, b) => b.time - a.time);
-    // console.log("data", leaderBoardData);
+    // console.log("leaderboardData", leaderboardData);
   }, []);
 
   return (
@@ -35,19 +36,19 @@ const Leaderboard: NextPage = () => {
           <h1 className="text-xl font-bold sm:text-2xl">Name</h1>
           <h1 className="text-xl font-bold sm:text-2xl">Time</h1>
         </div>
-        {/* {leaderBoardData.length > 1 && ( */}
-          
-            {data.map((data, index) => {
+        {/* {leaderboardData.length > 0 && ( */}
+          <div>
+            {leaderboardData?.map((data, index) => {
               console.log(data);
               return (
-                <div className="flex justify-between pl-3 pr-3 sm:pr-10 sm:pl-10">
+                <div className="flex justify-between pl-3 pr-3 sm:pr-10 sm:pl-10" key={index}>
                   <h1 className="text-2xl font-bold">{index + 1}</h1>
                   <h1 className="text-2xl font-bold">{data.name}</h1>
                   <h1 className="text-2xl font-bold">{data.time}</h1>
                 </div>
               );
             })}
-          
+          </div>
         {/* )} */}
       </div>
     </div>
