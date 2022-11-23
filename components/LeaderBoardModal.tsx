@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Link from "next/link";
+import { TimerContext } from "../lib/timerContext";
+import { collection, addDoc} from 'firebase/firestore'
+import { db } from '../lib/firebase'
+import toast from "react-hot-toast";
 
 const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
   const [name, setName] = useState("");
+
+  const timerContext = useContext(TimerContext);
 
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const submitHandler = () => {
-    console.log(name);
+  const submitHandler = async () => { 
+    //submit name and time to firestore and close modal then redirect to leaderboard
+    try {
+     await addDoc(collection(db, "leaderboard"), {
+        name: name,
+        time: timerContext.count,
+      });
+      toast.success("Document written with ID: ");
+    } catch (e) {
+      toast.error("Error adding document");
+    }
   };
 
   const cancelHandler = () => {
     setName("");
+
   };
 
   if (!props.isOver) return null;
@@ -34,12 +51,12 @@ const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
           />
         </div>
         <div className="flex justify-center items-center gap-10">
-          <button
+          <Link href="/leaderboard"><button
             onClick={submitHandler}
             className="rounded-lg w-fit p-3 bg-cyan-500 hover:bg-cyan-600 shadow-md shadow-slate-500 text-xl active:scale-95 font-semibold"
           >
             Add me
-          </button>
+          </button></Link>
           <button
             onClick={cancelHandler}
             className=" hover:bg-rose-600 text-xl rounded-lg bg-rose-500 w-fit p-3 shadow-md shadow-slate-500 active:scale-95 font-semibold"

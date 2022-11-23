@@ -33,7 +33,6 @@ const Home: NextPage = () => {
           (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
         )
       );
-      console.log(pageX, pageY, e);
     }
     if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
       setIsMonkey(true);
