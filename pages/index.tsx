@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import HomeHeader from "../components/HomeHeader";
 import LevelPreview from "../components/LevelPreview";
 
@@ -13,20 +14,38 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <HomeHeader />
-        
-        <div className="flex flex-col items-center mt-10 text-zinc-100">
-            <h2 className="mb-5 text-2xl font-semibold">Instructions</h2>
-            <p>Each level with have three characters to find</p>
-            <p>You can see the characters in the header and everytime you click</p>
-            <p>Click on the characters to find them!</p>
-        </div>
+      <HomeHeader />
 
-        <div className="">
-            <LevelPreview levelName="Gamecube" levelImage="/gamecube.jpg" character1="/link.webp" character2="/luigi.png" character3="/aiai.webp"/>
-        </div>
+      <div className="flex flex-col items-center mt-10 text-zinc-100">
+        <h2 className="mb-5 text-2xl font-semibold">Instructions</h2>
+        <p>Each level with have three characters to find</p>
+        <p>You can see the characters in the header and everytime you click</p>
+        <p>Click on the characters to find them!</p>
+      </div>
 
-
+      <div className="grid grid-cols-3 gap-10 mr-10 ml-10 mt-10">
+        <Link href="/gamecube"><LevelPreview
+          levelName="Gamecube"
+          levelImage="/gamecube-nobg.png"
+          character1="/link.webp"
+          character2="/luigi.png"
+          character3="/aiai.webp"
+        /></Link>
+        <Link href="/wii"><LevelPreview
+          levelName="Wii"
+          levelImage="/gamecube-nobg.png"
+          character1="/toad.png"
+          character2="/samus.png"
+          character3="/wii_fit.png"
+        /></Link>
+        <LevelPreview
+          levelName="Gamecube"
+          levelImage="/gamecube-nobg.png"
+          character1="/link.webp"
+          character2="/luigi.png"
+          character3="/aiai.webp"
+        />
+      </div>
     </div>
   );
 };
