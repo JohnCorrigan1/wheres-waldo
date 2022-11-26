@@ -5,7 +5,7 @@ import { collection, addDoc} from 'firebase/firestore'
 import { db } from '../lib/firebase'
 import toast from "react-hot-toast";
 
-const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
+const LeaderBoardModal: React.FC<{ isOver: boolean, level: string}> = (props) => {
   const [name, setName] = useState("");
 
   const timerContext = useContext(TimerContext);
@@ -17,7 +17,7 @@ const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
   const submitHandler = async () => { 
     //submit name and time to firestore and close modal then redirect to leaderboard
     try {
-     await addDoc(collection(db, "leaderboard"), {
+     await addDoc(collection(db, props.level), {
         name: name,
         time: timerContext.count,
       });

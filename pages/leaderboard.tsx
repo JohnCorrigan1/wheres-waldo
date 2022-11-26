@@ -13,7 +13,7 @@ const Leaderboard: NextPage = () => {
 
   useEffect(() => {
     const getLeaderboard = async () => {
-      const q = query(collection(db, "leaderboard"));
+      const q = query(collection(db, "gamecube"));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         data.push(doc.data() as LeaderboardData);
