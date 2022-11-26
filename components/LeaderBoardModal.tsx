@@ -29,7 +29,6 @@ const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
 
   const cancelHandler = () => {
     setName("");
-
   };
 
   if (!props.isOver) return null;
@@ -57,12 +56,12 @@ const LeaderBoardModal: React.FC<{ isOver: boolean }> = (props) => {
           >
             Add me
           </button></Link>
-          <button
+          <Link href="/leaderboard"><button
             onClick={cancelHandler}
             className=" hover:bg-rose-600 text-xl rounded-lg bg-rose-500 w-fit p-3 shadow-md shadow-slate-500 active:scale-95 font-semibold"
           >
             Im Slow
-          </button>
+          </button></Link>
         </div>
       </div>
     </>
