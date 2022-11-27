@@ -6,7 +6,7 @@ const LevelPreview: React.FC<{ character1: string, character2: string, character
             <h1 className="text-2xl font-semibold mb-5">{props.levelName}</h1>
             <Image src={props.levelImage} height={250} width={250} alt="gamecube" />
             <div className="flex flex-col items-center">
-                <h2 className="mb-5">You're looking for...</h2>
+                <h2 className="mb-5">You are looking for...</h2>
                 <div className="flex gap-5 h-16">
                     <Image src={props.character1} height={50} width={50} alt={props.character1} />
                     <Image src={props.character2} height={50} width={50} alt={props.character2} />
