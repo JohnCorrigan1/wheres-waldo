@@ -34,11 +34,11 @@ const Wii: NextPage = () => {
         )
       );
     }
-    if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
+    if (pageX >= 69 && pageX <= 76 && pageY >= 44 && pageY <= 47) {
       setIsSamus(true);
-    } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
+    } else if (pageY >= 59 && pageY <= 62 && pageX >= 32 && pageX <= 40) {
       setIsToad(true);
-    } else if (pageY >= 65 && pageY <= 68 && pageX >= 64 && pageX <= 73) {
+    } else if (pageY >= 30 && pageY <= 34 && pageX >= 17 && pageX <= 20) {
       setIsWiiFit(true);
     }
     setIsOpen(!isOpen);
@@ -60,14 +60,14 @@ const Wii: NextPage = () => {
   const samusHandler = () => {
     if (!isSamusClicked && isSamus) {
       setIsSamusClicked(true);
-      toast.success("You found AiAi!");
+      toast.success("You found Samus!");
     } else if (!isSamusClicked && !isSamus) {
-      toast.error("That's not AiAi");
+      toast.error("That's not Samus!");
       setIsSamus(false);
       setIsWiiFit(false);
       setIsToad(false);
     } else if (isSamusClicked) {
-      toast.error("You already found AiAi");
+      toast.error("You already found Samus!");
       setIsSamus(false);
       setIsWiiFit(false);
       setIsToad(false);
@@ -136,7 +136,7 @@ const Wii: NextPage = () => {
       {isSamusClicked && isWiiFitClicked && isToadClicked && (
         <LeaderBoardModal
           isOver={isSamusClicked && isWiiFitClicked && isToadClicked}
-          level={"gamecube"}
+          level={"wii"}
         />
       )}
 
@@ -152,10 +152,10 @@ const Wii: NextPage = () => {
               <Image src="/toad.png" width={50} height={50} alt="logo" />
             </h1>
           )}
-          {!isWiiFitClicked && (
+          {!isSamusClicked && (
             <h1
               className="border-black border-b-2 p-2 hover:bg-slate-400 flex gap-5 items-center"
-              onClick={wiifitHandler}
+              onClick={samusHandler}
             >
               Samus
               <Image
@@ -167,10 +167,10 @@ const Wii: NextPage = () => {
               />
             </h1>
           )}
-          {!isSamusClicked && (
+          {!isWiiFitClicked && (
             <h1
               className="p-2 rounded-b-md hover:bg-slate-400 flex gap-4"
-              onClick={samusHandler}
+              onClick={wiifitHandler}
             >
               Wii Fit
               <Image src="/wii_fit.png" width={50} height={50} alt="logo" />
@@ -180,6 +180,14 @@ const Wii: NextPage = () => {
       ) : (
         <></>
       )}
+       <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
+      <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
+        <h1>X: {xCord}</h1>
+        <h1>Y: {yCord}</h1>
+        <h1>page X: {pageX}</h1>
+        <h1>page Y: {pageY}</h1>
+      </div>
+      </div>
     </div>
   );
 };

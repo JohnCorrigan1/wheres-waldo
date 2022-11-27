@@ -9,7 +9,7 @@ const LeaderBoardModal: React.FC<{ isOver: boolean, level: string}> = (props) =>
   const [name, setName] = useState("");
 
   const timerContext = useContext(TimerContext);
-
+  
   const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -21,7 +21,7 @@ const LeaderBoardModal: React.FC<{ isOver: boolean, level: string}> = (props) =>
         name: name,
         time: timerContext.count,
       });
-      toast.success("Document written with ID: ");
+      toast.success("Document written");
     } catch (e) {
       toast.error("Error adding document");
     }

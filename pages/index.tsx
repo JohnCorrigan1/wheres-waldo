@@ -4,8 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import HomeHeader from "../components/HomeHeader";
 import LevelPreview from "../components/LevelPreview";
+import { LevelContext } from "../lib/levelContext";
+import { useContext } from "react";
 
 const Home: NextPage = () => {
+  const levelContext = useContext(LevelContext);
+
+  const gameCubeHandler = () => {
+    levelContext.setLevel("gamecube");
+  };
+
+  const n64Handler = () => {
+    levelContext.setLevel("n64");
+  };
+
+  const wiiHandler = () => {
+    levelContext.setLevel("wii");
+  };
+
   return (
     <div className="home bg-neutral-800">
       <Head>
@@ -24,27 +40,39 @@ const Home: NextPage = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-10 mr-10 ml-10 mt-10">
-        <Link href="/gamecube"><LevelPreview
-          levelName="Gamecube"
-          levelImage="/gamecube-nobg.png"
-          character1="/link.webp"
-          character2="/luigi.png"
-          character3="/aiai-nobg.png"
-        /></Link>
-        <Link href="/wii"><LevelPreview
-          levelName="Wii"
-          levelImage="/wii-preview.png"
-          character1="/toad.png"
-          character2="/samus.png"
-          character3="/wii_fit.png"
-        /></Link>
-        <Link href="/n64"><LevelPreview
-          levelName="Gamecube"
-          levelImage="/gamecube-nobg.png"
-          character1="/link.webp"
-          character2="/luigi.png"
-          character3="/aiai-nobg.png"
-        /></Link>
+        <div onClick={gameCubeHandler}>
+          <Link href="/gamecube">
+            <LevelPreview
+              levelName="Gamecube"
+              levelImage="/gamecube-nobg.png"
+              character1="/link.webp"
+              character2="/luigi.png"
+              character3="/aiai-nobg.png"
+            />
+          </Link>
+        </div>
+        <div onClick={wiiHandler}>
+          <Link href="/wii">
+            <LevelPreview
+              levelName="Wii"
+              levelImage="/wii-preview.png"
+              character1="/toad.png"
+              character2="/samus.png"
+              character3="/wii_fit.png"
+            />
+          </Link>
+        </div>
+        <div onClick={n64Handler}>
+          <Link href="/n64">
+            <LevelPreview
+              levelName="Gamecube"
+              levelImage="/gamecube-nobg.png"
+              character1="/link.webp"
+              character2="/luigi.png"
+              character3="/aiai-nobg.png"
+            />
+          </Link>
+        </div>
       </div>
     </div>
   );
