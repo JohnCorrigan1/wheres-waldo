@@ -29,22 +29,22 @@ const Home: NextPage = () => {
           levelImage="/gamecube-nobg.png"
           character1="/link.webp"
           character2="/luigi.png"
-          character3="/aiai.webp"
+          character3="/aiai-nobg.png"
         /></Link>
         <Link href="/wii"><LevelPreview
           levelName="Wii"
-          levelImage="/gamecube-nobg.png"
+          levelImage="/wii-preview.png"
           character1="/toad.png"
           character2="/samus.png"
           character3="/wii_fit.png"
         /></Link>
-        <LevelPreview
+        <Link href="/n64"><LevelPreview
           levelName="Gamecube"
           levelImage="/gamecube-nobg.png"
           character1="/link.webp"
           character2="/luigi.png"
-          character3="/aiai.webp"
-        />
+          character3="/aiai-nobg.png"
+        /></Link>
       </div>
     </div>
   );

@@ -124,10 +124,13 @@ const GameCube: NextPage = () => {
     left: ${xCord + 35}px;`}</style>
 
       <GameHeader
-        isLuigiClicked={isLuigiClicked}
-        isMonkeyClicked={isMonkeyClicked}
-        isLinkClicked={isLinkClicked}
+        isChar3={isLuigiClicked}
+        isChar2={isMonkeyClicked}
+        isChar1={isLinkClicked}
         isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked}
+        char1Image="/link.webp"
+        char2Image="/aiai-nobg.png"
+        char3Image="/luigi.png"
       />
 
       {isMonkeyClicked && isLinkClicked && isLuigiClicked && (
@@ -172,7 +175,7 @@ const GameCube: NextPage = () => {
               onClick={monkeyHandler}
             >
               AiAi
-              <Image src="/aiai.webp" width={70} height={50} alt="logo" />
+              <Image src="/aiai-nobg.png" width={50} height={50} alt="logo" />
             </h1>
           )}
         </div>
