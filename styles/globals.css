@@ -6,20 +6,36 @@ html,
 body {
   padding: 0;
   margin: 0;
-  
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    
+}
+
+.home{
+  min-height: 100vh;
+  max-width: 100vw;
 }
 
 
-.home {
+.gamecube {
   background-image: url(/gamecube.jpg);
   background-repeat: no-repeat;
   background-size: 100vw 300vh;
   height:300vh;
 }
 
+.wii {
+  background-image: url(/wii.jpg);
+  background-repeat: no-repeat;
+  background-size: 100vw 300vh;
+  height:300vh;
+}
+
+.n64 {
+  background-image: url(/n64.jpg);
+  background-repeat: no-repeat;
+  background-size: 100vw 300vh;
+  height:300vh;
+}
 
 .leaderboard {
   min-height: 100vh;

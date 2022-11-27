@@ -1,19 +1,23 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import LeaderboardData from "../models/LeaderboardData.";
 import Link from "next/link";
+import { LevelContext } from "../lib/levelContext";
 
 const Leaderboard: NextPage = () => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardData[]>([]);
+
+  const levelContext = useContext(LevelContext);
+  
 
   const data: LeaderboardData[] = [];
 
   useEffect(() => {
     const getLeaderboard = async () => {
-      const q = query(collection(db, "leaderboard"));
+      const q = query(collection(db, levelContext.level));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         data.push(doc.data() as LeaderboardData);
