@@ -12,12 +12,12 @@ const N64: NextPage = () => {
   const [pageX, setPageX] = useState(0);
   const [pageY, setPageY] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMonkey, setIsMonkey] = useState(false);
-  const [isLink, setIsLink] = useState(false);
-  const [isLuigi, setIsLuigi] = useState(false);
-  const [isMonkeyClicked, setIsMonkeyClicked] = useState(false);
-  const [isLinkClicked, setIsLinkClicked] = useState(false);
-  const [isLuigiClicked, setIsLuigiClicked] = useState(false);
+  const [isDonkeyKong, setIsDonkeyKong] = useState(false);
+  const [isFox, setIsFox] = useState(false);
+  const [isFalcon, setIsFalcon] = useState(false);
+  const [isDonkeyKongClicked, setIsDonkeyKongClicked] = useState(false);
+  const [isFoxClicked, setIsFoxClicked] = useState(false);
+  const [isFalconClicked, setIsFalconClicked] = useState(false);
 
   const selectionHandler = (e: any) => {
     setXCord(e.pageX);
@@ -34,12 +34,12 @@ const N64: NextPage = () => {
         )
       );
     }
-    if (pageX >= 20 && pageX <= 27 && pageY >= 43 && pageY <= 46) {
-      setIsMonkey(true);
-    } else if (pageY >= 48 && pageY <= 51 && pageX >= 79 && pageX <= 84) {
-      setIsLuigi(true);
-    } else if (pageY >= 65 && pageY <= 68 && pageX >= 64 && pageX <= 73) {
-      setIsLink(true);
+    if (pageY >= 48 && pageY <= 52 && pageX >= 73 && pageX <= 80) {
+      setIsDonkeyKong(true);
+    } else if (pageY >= 65 && pageY <= 68 && pageX >= 72 && pageX <= 81) {
+      setIsFalcon(true);
+    } else if (pageY >= 37 && pageY <=46 && pageX >= 4 && pageX <= 23) {
+      setIsFox(true);
     }
     setIsOpen(!isOpen);
   };
@@ -57,54 +57,54 @@ const N64: NextPage = () => {
     );
   };
 
-  const monkeyHandler = () => {
-    if (!isMonkeyClicked && isMonkey) {
-      setIsMonkeyClicked(true);
-      toast.success("You found AiAi!");
-    } else if (!isMonkeyClicked && !isMonkey) {
-      toast.error("That's not AiAi");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
-    } else if (isMonkeyClicked) {
-      toast.error("You already found AiAi");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
+  const donkeykongHandler = () => {
+    if (!isDonkeyKongClicked && isDonkeyKong) {
+      setIsDonkeyKongClicked(true);
+      toast.success("You found Donkey Kong!");
+    } else if (!isDonkeyKongClicked && !isDonkeyKong) {
+      toast.error("That's not Donkey Kong");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
+    } else if (isDonkeyKongClicked) {
+      toast.error("You already found Donkey Kong");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
     }
   };
 
-  const luigiHandler = () => {
-    if (!isLuigiClicked && isLuigi) {
-      setIsLuigiClicked(true);
-      toast.success("You found Luigi");
-    } else if (!isLuigiClicked && !isLuigi) {
-      toast.error("That's not Luigi");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
-    } else if (isLuigiClicked) {
-      toast.error("You already found Luigi");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
+  const falconHandler = () => {
+    if (!isFalconClicked && isFalcon) {
+      setIsFalconClicked(true);
+      toast.success("You found Falcon");
+    } else if (!isFalconClicked && !isFalcon) {
+      toast.error("That's not Falcon");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
+    } else if (isFalconClicked) {
+      toast.error("You already found Falcon");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
     }
   };
 
-  const linkHandler = () => {
-    if (!isLinkClicked && isLink) {
-      setIsLinkClicked(true);
-      toast.success("You found Link");
-    } else if (!isLinkClicked && !isLink) {
-      toast.error("That's not Link");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
-    } else if (isLinkClicked) {
-      toast.error("You already found Link");
-      setIsMonkey(false);
-      setIsLink(false);
-      setIsLuigi(false);
+  const foxHandler = () => {
+    if (!isFoxClicked && isFox) {
+      setIsFoxClicked(true);
+      toast.success("You found Fox");
+    } else if (!isFoxClicked && !isFox) {
+      toast.error("That's not Fox");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
+    } else if (isFoxClicked) {
+      toast.error("You already found Fox");
+      setIsDonkeyKong(false);
+      setIsFox(false);
+      setIsFalcon(false);
     }
   };
 
@@ -124,64 +124,70 @@ const N64: NextPage = () => {
     left: ${xCord + 35}px;`}</style>
 
       <GameHeader
-        isChar1={isLuigiClicked}
-        isChar2={isMonkeyClicked}
-        isChar3={isLinkClicked}
-        isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked}
-        char1Image="/toad.png"
-        char2Image="/samus.png"
-        char3Image="/wii_fit.png"
+        isChar1={isFalconClicked}
+        isChar2={isDonkeyKongClicked}
+        isChar3={isFoxClicked}
+        isOver={isDonkeyKongClicked && isFoxClicked && isFalconClicked}
+        char1Image="/falcon.png"
+        char2Image="/donkeyKong.png"
+        char3Image="/fox.png"
       />
 
-      {isMonkeyClicked && isLinkClicked && isLuigiClicked && (
+      {isDonkeyKongClicked && isFoxClicked && isFalconClicked && (
         <LeaderBoardModal
-          isOver={isMonkeyClicked && isLinkClicked && isLuigiClicked}
-          level={"gamecube"}
+          isOver={isDonkeyKongClicked && isFoxClicked && isFalconClicked}
+          level={"n64"}
         />
       )}
 
       {isOpen ? (
         <div className="rounded-md bg-slate-600 text-2xl font-semibold absolute items-container cursor-pointer shadow-lg bg-opacity-80 text-zinc-200">
-          {!isLuigiClicked && (
+          {!isFalconClicked && (
             <h1
               className={
-                (isLuigiClicked ? "line-through" : "") +
+                (isFalconClicked ? "line-through" : "") +
                 "border-black border-b-2 hover:bg-slate-400 p-2 rounded-t-md flex items-center"
               }
-              onClick={luigiHandler}
+              onClick={falconHandler}
             >
-              Luigi
-              <Image src="/luigi.png" width={60} height={0} alt="logo" />
+              Falcon
+              <Image src="/falcon.png" width={50} height={50} alt="logo" />
             </h1>
           )}
-          {!isLinkClicked && (
+          {!isFoxClicked && (
             <h1
               className="border-black border-b-2 p-2 hover:bg-slate-400 flex gap-5 items-center"
-              onClick={linkHandler}
+              onClick={foxHandler}
             >
-              Link
+              Fox
               <Image
-                src="/link.webp"
+                src="/fox.png"
                 width={50}
-                height={0}
+                height={50}
                 alt="logo"
                 className="mr-5"
               />
             </h1>
           )}
-          {!isMonkeyClicked && (
+          {!isDonkeyKongClicked && (
             <h1
               className="p-2 rounded-b-md hover:bg-slate-400 flex gap-4"
-              onClick={monkeyHandler}
+              onClick={donkeykongHandler}
             >
-              AiAi
-              <Image src="/aiai.webp" width={70} height={50} alt="logo" />
+              DK
+              <Image src="/donkeyKong.png" width={50} height={50} alt="logo" />
             </h1>
           )}
         </div>
       ) : (
         <></>
       )}
+        <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
+        <h1>X: {xCord}</h1>
+        <h1>Y: {yCord}</h1>
+        <h1>page X: {pageX}</h1>
+        <h1>page Y: {pageY}</h1>
+      </div>
     </div>
   );
 };
