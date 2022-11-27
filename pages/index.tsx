@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import HomeHeader from "../components/HomeHeader";
 import LevelPreview from "../components/LevelPreview";
@@ -66,10 +65,10 @@ const Home: NextPage = () => {
           <Link href="/n64">
             <LevelPreview
               levelName="Gamecube"
-              levelImage="/gamecube-nobg.png"
-              character1="/link.webp"
-              character2="/luigi.png"
-              character3="/aiai-nobg.png"
+              levelImage="/n64Console.png"
+              character1="/falcon.png"
+              character2="/donkeyKong.png"
+              character3="/fox.png"
             />
           </Link>
         </div>

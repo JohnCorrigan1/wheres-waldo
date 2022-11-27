@@ -182,12 +182,6 @@ const N64: NextPage = () => {
       ) : (
         <></>
       )}
-        <div className="flex flex-col gap-5 text-rose-400 text-3xl fixed top-10 left-10">
-        <h1>X: {xCord}</h1>
-        <h1>Y: {yCord}</h1>
-        <h1>page X: {pageX}</h1>
-        <h1>page Y: {pageY}</h1>
-      </div>
     </div>
   );
 };
