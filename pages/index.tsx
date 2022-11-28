@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         <p>Click on the characters to find them!</p>
       </div>
 
-      <div className="grid grid-cols-3 gap-10 mr-10 ml-10 mt-10">
+      <div className="grid grid-cols-3 gap-10 mr-5 ml-5 md:mr-10 md:ml-10 mt-10 grid-container">
         <div onClick={gameCubeHandler}>
           <Link href="/gamecube">
             <LevelPreview
