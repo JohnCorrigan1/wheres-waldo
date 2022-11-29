@@ -6,12 +6,17 @@ import { db } from "../lib/firebase";
 import LeaderboardData from "../models/LeaderboardData.";
 import Link from "next/link";
 import { LevelContext } from "../lib/levelContext";
+import { TimerContext } from "../lib/timerContext";
 
 const Leaderboard: NextPage = () => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardData[]>([]);
 
   const levelContext = useContext(LevelContext);
+  const timerContext = useContext(TimerContext);
   
+  const timeHandler = () => {
+    timerContext.setCount(0);
+  };
 
   const data: LeaderboardData[] = [];
 
@@ -36,7 +41,10 @@ const Leaderboard: NextPage = () => {
       </Head>
       <div className="flex flex-col items-center justify-center gap-5">
         <h1 className="mt-10 text-3xl font-bold">Leaderboard</h1>
-        <Link href="/"><button className="p-2 bg-cyan-600 rounded-lg font-semibold shadow shadow-white active:scale-95 hover:bg-cyan-700">Play Again</button></Link>
+        <div className="flex gap-10">
+        <Link href={"/" + levelContext.level}><button onClick={timeHandler} className="p-2 bg-cyan-600 rounded-lg font-semibold shadow shadow-white active:scale-95 hover:bg-cyan-700">Play Again</button></Link>
+        <Link href="/"><button onClick={timeHandler} className="p-2 bg-cyan-600 rounded-lg font-semibold shadow shadow-white active:scale-95 hover:bg-cyan-700">Head Home</button></Link>
+        </div>
       </div>
       <div className="  text-black mt-10 sm:mr-10 sm:ml-10 md:mr-20 md:ml-20 mb-10 rounded-t-lg">
         <div className="grid grid-header bg rounded-t-lg pt-5 pb-5 bg-slate-600">
