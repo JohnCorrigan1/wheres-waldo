@@ -112,7 +112,7 @@ const Wii: NextPage = () => {
     <div
       onMouseMove={mouseHandler}
       onClick={selectionHandler}
-      className="flex wii"
+      className="flex wii font-body"
     >
       <Head>
         <title>Where is Everyone?</title>

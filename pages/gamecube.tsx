@@ -112,7 +112,7 @@ const GameCube: NextPage = () => {
     <div
       onMouseMove={mouseHandler}
       onClick={selectionHandler}
-      className="flex gamecube"
+      className="flex gamecube font-body"
     >
       <Head>
         <title>Where is Everyone?</title>

@@ -15,6 +15,10 @@ module.exports = {
       'xs': {'min': '550px'},
       'xxs': {'min': '375px'},
     },
+    fontFamily: {
+      title: ['Bebas Neue', 'sans-serif'],
+      body: ['Comfortaa', 'sans-serif'],
+    },
   },
   plugins: [],
 }

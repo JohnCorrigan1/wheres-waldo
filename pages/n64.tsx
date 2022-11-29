@@ -141,7 +141,7 @@ const N64: NextPage = () => {
       )}
 
       {isOpen ? (
-        <div className="rounded-md bg-slate-600 text-2xl font-semibold absolute items-container cursor-pointer shadow-lg bg-opacity-80 text-zinc-200">
+        <div className="font-body rounded-md bg-slate-600 text-2xl font-semibold absolute items-container cursor-pointer shadow-lg bg-opacity-80 text-zinc-200">
           {!isFalconClicked && (
             <h1
               className={
