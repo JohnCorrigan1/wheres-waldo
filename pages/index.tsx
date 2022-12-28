@@ -66,7 +66,7 @@ const Home: NextPage = () => {
         <div onClick={n64Handler}>
           <Link href="/n64">
             <LevelPreview
-              levelName="Gamecube"
+              levelName="N64"
               levelImage="/n64Console.png"
               character1="/falcon.png"
               character2="/donkeyKong.png"
